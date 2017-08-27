@@ -9,7 +9,7 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-###Data Set Summary & Exploration
+### Data Set Summary & Exploration
 
 
 I used the pandas library to calculate summary statistics of the traffic signs data set:
@@ -22,12 +22,12 @@ I used the pandas library to calculate summary statistics of the traffic signs d
 
 
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1. Preprocess the image data - Normalization.
+#### 1. Preprocess the image data - Normalization.
 My first step to process the image data is to normalize. Next step is pad the data from 32x32 to 36x36.
 
-####2. My final model consisted of the following layers:
+#### 2. My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -45,10 +45,10 @@ My first step to process the image data is to normalize. Next step is pad the da
  
 
 
-####3. How to train my model. 
+#### 3. How to train my model. 
 To train the model, I used an optimizer, batch size = 128, epochs = 10, learning rate = 0.001.
 
-####4. 
+#### 4. Model results
 
 My final model results were:
 * training set accuracy of ?
@@ -68,9 +68,9 @@ If a well known architecture was chosen:
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 The last image might be difficult to classify because the contrast ratio of the image is low.
 
