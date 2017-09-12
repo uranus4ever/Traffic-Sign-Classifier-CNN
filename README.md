@@ -25,7 +25,12 @@ I used the pandas library to calculate summary statistics of the traffic signs d
 ### Design and Test a Model Architecture
 
 #### 1. Preprocess the image data - Normalization.
-My first step to process the image data is to normalize. Next step is pad the data from 32x32 to 36x36.
+My first step to process the image data is to grayscale.
+
+```
+gray = np.array([np.dot(img[..., :3], [0.299, 0.587, 0.114])])
+NewImg = np.rollaxis(tmp, 0, 3) 
+```
 
 #### 2. My final model consisted of the following layers:
 
