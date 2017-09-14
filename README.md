@@ -39,13 +39,13 @@ After that, the training data set is shuffled to avoid overfitting.
 |   | Input          		| 32x32x1 image 							| 
 | 1 | Convolution 5x5 	| 1x1 stride, valid padding, outputs 28x28x6 	|
 |   | RELU			        		|					Activation							|
-|   | Max pooling	    	| 2x2 stride,  outputs 14x14x6 				|
+|   | Max pooling	    	| 2x2 stride, outputs 14x14x6 				|
 | 2 | Convolution 3x3  | 1x1 stride, valid padding, outputs 12x12x20 |
 |   | RELU		           |      Activation   									|
-|   | Max pooling			  	| outputs 6x6x20        									|
+|   | Max pooling			  	| 2x2 stride, outputs 6x6x20        				|
 | 3 | Convolution 3x3  | 1x1 stride, valid padding, outputs 4x4x60 |
 |   | RELU		           |      Activation   									|
-|   | Max pooling			  	| outputs 2x2x60        									|
+|   | Max pooling			  	| 2x2 stride, outputs 2x2x60        									|
 |	  | Flatten			     		|	outputs 240											|
 | 4 |	Fully connected		|	outputs 160, dropout		|
 |   | RELU             |      Activation       |
@@ -60,42 +60,42 @@ To train the model, I used an optimizer, batch size = 128, epochs = 20, learning
 ### 4. Model results
 
 My final model results were:
-* validation set accuracy of 94.2% 
-* test set accuracy of 93.2%
+* validation set accuracy of 94.8% 
+* test set accuracy of 93.6%
 
 An iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
-I choose LeNet because they have the same application scenario - training the data set to learn how to classifer categories.
+ I choose LeNet because they have the same application scenario - training the data set to learn how to classifer categories.
 
 * What were some problems with the initial architecture?
-LeNet architecture adoption is underfitting to this project.
+ LeNet architecture adoption is underfitting to this project.
 
 * How was the architecture adjusted and why was it adjusted? 
-I add one layer to make the architecture deeper, including convolution and max pooling, due to initial model accurancy is around 83%, indicating underfitting.
+  I add one layer to make the architecture deeper, including convolution and max pooling, due to initial model accurancy is around 83%, indicating underfitting.
 
 * Which parameters were tuned? How were they adjusted and why?
-I tune filter height and width, depth. Too large filter size results in inefficient whereas too small size underfitting.
+  I tune filter height and width, depth. Too large filter size results in inefficient whereas too small size underfitting.
 
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
- I consider adopting 1x1 conv, dropout and max pooling techniques to improve the model performance. 1x1 conv is an inexpensive way to make model deeper and have more parameters. However, it does not make my model efficient.
- In terms of dropout, it is a technique for regularization. It  makes things more robust and prevents over fitting to improve performance. Since there is a large size of training data size, I do not worry about abandon of redundant details. And dropout really helps in my model! 
- Max pooling has no risk an increase in overfitting. It is more accurate but more expensive to compute.
+* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model? 
+  I consider adopting 1x1 conv, dropout and max pooling techniques to improve the model performance. 1x1 conv is an inexpensive way to make model deeper and have more parameters. However, it does not make my model efficient.
+  In terms of dropout, it is a technique for regularization. It  makes things more robust and prevents over fitting to improve performance. Since there is a large size of training data size, I do not worry about abandon of redundant details. And dropout really helps in my model! 
+  Max pooling has no risk an increase in overfitting. It is more accurate but more expensive to compute.
  
- The following figure is the summary comparison. 
- ![Model_Comparison](https://github.com/uranus4ever/Traffic-Sign-Classifier-CNN/blob/master/ModelAccurancyCompare.png)
+The following figure is the summary comparison. 
+![Model_Comparison](https://github.com/uranus4ever/Traffic-Sign-Classifier-CNN/blob/master/ModelAccurancyCompare.png)
  
- Finnally I apply dropout and max pooling in my model.
+Finnally I apply dropout and max pooling in my model.
 
 If a well known architecture was chosen:
 * What architecture was chosen?
-LeNet.
+  LeNet.
 
 * Why did you believe it would be relevant to the traffic sign application?
-Because they have the same application scenario - training the data set to learn how to classifer categories. And I grayscale the input image to transfer into the same problem.
+  Because they have the same application scenario - training the data set to learn how to classifer categories. And I grayscale the input image to transfer into the same problem.
 
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
-** validation set accuracy of 94.2% 
-** test set accuracy of 93.2%
+  validation set accuracy of 94.8% 
+  test set accuracy of 93.6%
 
 
 ## Test a Model on New Images
