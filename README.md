@@ -56,6 +56,17 @@ After that, the training data set is shuffled to avoid overfitting.
 ### 3. How to train my model. 
 
 To train the model, I used an optimizer, batch size = 128, epochs = 20, learning rate = 0.001.
+```
+optimizer = tf.train.AdamOptimizer(learning_rate = 0.001)
+training_operation = optimizer.minimize(loss_operation)
+```
+Then feed data to the training model batch by batch.
+```
+for offset in range(0, num_examples, BATCH_SIZE):
+    end = offset + BATCH_SIZE
+    batch_x, batch_y = X_train[offset:end], y_train[offset:end]
+    sess.run(training_operation, feed_dict={x: batch_x, y: batch_y, keep_prob: 0.5})
+```
 
 ### 4. Model results
 
@@ -64,19 +75,19 @@ My final model results were:
 * test set accuracy of 93.6%
 
 An iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
- I choose LeNet because they have the same application scenario - training the data set to learn how to classifer categories.
+#### What was the first architecture that was tried and why was it chosen?
+I choose LeNet because they have the same application scenario - training the data set to learn how to classifer categories.
 
-* What were some problems with the initial architecture?
- LeNet architecture adoption is underfitting to this project.
+#### What were some problems with the initial architecture?
+LeNet architecture adoption is underfitting to this project.
 
-* How was the architecture adjusted and why was it adjusted? 
-  I add one layer to make the architecture deeper, including convolution and max pooling, due to initial model accurancy is around 83%, indicating underfitting.
+#### How was the architecture adjusted and why was it adjusted? 
+I add one layer to make the architecture deeper, including convolution and max pooling, due to initial model accurancy is around 83%, indicating underfitting.
 
-* Which parameters were tuned? How were they adjusted and why?
-  I tune filter height and width, depth. Too large filter size results in inefficient whereas too small size underfitting.
+#### Which parameters were tuned? How were they adjusted and why?
+I tune filter height and width, depth. Too large filter size results in inefficient whereas too small size underfitting.
 
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model? 
+#### What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model? 
   I consider adopting 1x1 conv, dropout and max pooling techniques to improve the model performance. 1x1 conv is an inexpensive way to make model deeper and have more parameters. However, it does not make my model efficient.
   In terms of dropout, it is a technique for regularization. It  makes things more robust and prevents over fitting to improve performance. Since there is a large size of training data size, I do not worry about abandon of redundant details. And dropout really helps in my model! 
   Max pooling has no risk an increase in overfitting. It is more accurate but more expensive to compute.
@@ -87,19 +98,23 @@ The following figure is the summary comparison.
 Finnally I apply dropout and max pooling in my model.
 
 If a well known architecture was chosen:
-* What architecture was chosen?
+#### What architecture was chosen?
   LeNet.
 
-* Why did you believe it would be relevant to the traffic sign application?
+#### Why did you believe it would be relevant to the traffic sign application?
   Because they have the same application scenario - training the data set to learn how to classifer categories. And I grayscale the input image to transfer into the same problem.
 
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
-  validation set accuracy of 94.8% 
-  test set accuracy of 93.6%
+#### How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+The final model is believed to work well after tuning, although it still has a lot of room to improve.
+* validation set accuracy of 94.8% 
+* test set accuracy of 93.6%
 
 
 ## Test a Model on New Images
 
-### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+### 1. Test the model with new images and analyze performance.
+Test images are isolated from training data and validation data to ensure REAL effectiveness of test accuracy. My test set accuracy is 93.6%.
+
+### 2. Choose German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 Some images might be difficult to classify because they are too dark and low contract, resulting hard for the model to extract the feature to classify correctly.
 
