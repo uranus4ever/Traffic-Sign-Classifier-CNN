@@ -20,7 +20,7 @@ I  calculate summary statistics of the traffic signs data set:
 
 Visualization of the Traffic Sign data set:
 
-![TrafficSignExample](httpts://github.com/uranus4ever/Traffic-Sign-Classifier-CNN/blob/master/TrafficSignExample.jpg)
+![TrafficSignExample](https://github.com/uranus4ever/Traffic-Sign-Classifier-CNN/blob/master/TrafficSignExample.JPG)
 
 ## Design and Test a Model Architecture
 
