@@ -18,9 +18,13 @@ I  calculate summary statistics of the traffic signs data set:
 * The shape of a traffic sign image is 32x32x3
 * The number of unique classes/labels in the data set is 43
 
+Visualization of the Traffic Sign data set:
+
+![TrafficSignExample](httpts://github.com/uranus4ever/Traffic-Sign-Classifier-CNN/blob/master/TrafficSignExample.jpg)
+
 ## Design and Test a Model Architecture
 
-### 1. Preprocess the image data - Normalization.
+### 1. Preprocess the image data.
 
 My first step to process the image data is to grayscale. Because the key info conveyed in the traffic sign is the pattern instead of the color. RGB - channels increase computation complexity and helps little on recognition accurancy, although color classifies the categories and helps human to have a general warning at first glance.
 
@@ -32,7 +36,7 @@ NewImg = np.rollaxis(gray, 0, 3)
 ```
 After that, the training data set is shuffled to avoid overfitting.
 
-### 2. My final model consisted of the following layers:
+### 2. My final model consists of the following layers:
 
 | Layer No. | Layer  		|     Description	        					| 
 |:-:|:----------------:|:----------------------------:| 
