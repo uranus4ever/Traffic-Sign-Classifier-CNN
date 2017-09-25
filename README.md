@@ -29,7 +29,7 @@ Visualization of the Traffic Sign data set:
 
 ### 1. Preprocess the image data.
 
-My first step to process the data is cropping the margin of the image. It will reduce useless information and speed up the computation. Next I apply Gasussian Blur (```cv2.GaussianBlur()```) to sharpen the image as most of them are vague. Finally Equalisation Histogram (```cv2.equalizeHist()```) is used to normalize the image.
+My first step to process the data is cropping the margin of the image. It will reduce useless information and speed up the computation. Next I apply Gasussian Blur (```cv2.GaussianBlur()```) to sharpen the image as most of them are vague. Finally Equalisation Histogram (```cv2.equalizeHist()```) is used to normalize the image. In contrary to MINIST dataset, grayscale is not a good technique to apply here because color stands for important infomation as well.
 
 And I notice the contribution of the sample classes is far from even. The minimum and maximum numbers of one label varies from less than 200 to more than 2000. A small training sample set will definitely cause underfit. Hence I create some new data through ```rotate_img``` if its class number is less than 400. As a result, I create 5130 new data to add into the training set.
 
@@ -77,8 +77,8 @@ for offset in range(0, num_examples, BATCH_SIZE):
 ### 4. Model results
 
 My final model results were:
-* validation set accuracy of 96.2% 
-* test set accuracy of 94.1%
+* validation set accuracy of 95.7% 
+* test set accuracy of 93.4%
 
 An iterative approach was chosen:
 #### What was the first architecture that was tried and why was it chosen?
@@ -107,7 +107,7 @@ Finnally I apply dropout and max pooling in my model.
 ## Test a Model on New Images
 
 ### 1. Test the model with new images and analyze performance.
-Test images are isolated from training data and validation data to ensure REAL effectiveness of test accuracy. My test set accuracy is 94.1%.
+Test images are isolated from training data and validation data to ensure REAL effectiveness of test accuracy. My test set accuracy is 93.4%.
 
 ### 2. Choose German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 Some images might be difficult to classify because they are too dark and low contract, resulting hard for the model to extract the feature to classify correctly.
