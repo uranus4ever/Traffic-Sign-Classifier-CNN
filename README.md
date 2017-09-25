@@ -33,6 +33,8 @@ My first step to process the data is cropping the margin of the image. It will r
 
 And I notice the contribution of the sample classes is far from even. The minimum and maximum numbers of one label varies from less than 200 to more than 2000. A small training sample set will definitely cause underfit. Hence I create some new data through ```rotate_img``` if its class number is less than 400. As a result, I create 5130 new data to add into the training set.
 
+![Processdata](./process1.png)
+
 * The size of updated training set is 39929
 * The shape of a processed traffic sign image is 28x28x3
 
