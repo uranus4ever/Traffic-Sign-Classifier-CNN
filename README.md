@@ -1,12 +1,15 @@
 # Build a Traffic Sign Recognition Project
 
 The goals / steps of this project are the following:
-* Load the data set (see below for links to the project data set)：German Traffic Sign Dataset (<http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset>)
+* Load the data set (see below for links to the project data set)：[German Traffic Sign Dataset] (http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset)
 * Explore, summarize and visualize the data set
 * Design, train and test a Convenlutional Neural Network model architecture
 * Use the model to make predictions on new images
 * Analyze the softmax probabilities of the new images
 
+## Usage
+```Traffic_Sign_Classifier-Copy1.ipynb``` for Jupyter Notebook source code.
+```Traffic_Sign_Classifier-Copy1.html``` for browsing.
 
 ## Data Set Summary & Exploration
 
@@ -29,6 +32,9 @@ Visualization of the Traffic Sign data set:
 My first step to process the data is cropping the margin of the image. It will reduce useless information and speed up the computation. Next I apply Gasussian Blur (```cv2.GaussianBlur()```) to sharpen the image as most of them are vague. Finally Equalisation Histogram (```cv2.equalizeHist()```) is used to normalize the image.
 
 And I notice the contribution of the sample classes is far from even. The minimum and maximum numbers of one label varies from less than 200 to more than 2000. A small training sample set will definitely cause underfit. Hence I create some new data through ```rotate_img``` if its class number is less than 400. As a result, I create 5130 new data to add into the training set.
+
+* The size of updated training set is 39929
+* The shape of a processed traffic sign image is 28x28x3
 
 ### 2. My final model consists of the following layers:
 
