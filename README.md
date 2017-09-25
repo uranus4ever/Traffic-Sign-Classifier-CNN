@@ -1,7 +1,7 @@
 # Build a Traffic Sign Recognition Project
 
 The goals / steps of this project are the following:
-* Load the data set (see below for links to the project data set)：[German Traffic Sign Dataset] (http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset)
+* Load the data set：[German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset)
 * Explore, summarize and visualize the data set
 * Design, train and test a Convenlutional Neural Network model architecture
 * Use the model to make predictions on new images
@@ -9,7 +9,7 @@ The goals / steps of this project are the following:
 
 ## Usage
 ```Traffic_Sign_Classifier-Copy1.ipynb``` for Jupyter Notebook source code.
-```Traffic_Sign_Classifier-Copy1.html``` for browsing.
+<br>```Traffic_Sign_Classifier-Copy1.html``` for browsing.
 
 ## Data Set Summary & Exploration
 
