@@ -26,28 +26,22 @@ Visualization of the Traffic Sign data set:
 
 ### 1. Preprocess the image data.
 
-My first step to process the image data is to grayscale. Because the key info conveyed in the traffic sign is the pattern instead of the color. RGB - channels increase computation complexity and helps little on recognition accurancy, although color classifies the categories and helps human to have a general warning at first glance.
+My first step to process the data is cropping the margin of the image. It will reduce useless information and speed up the computation. Next I apply Gasussian Blur (```cv2.GaussianBlur()```) to sharpen the image as most of them are vague. Finally Equalisation Histogram (```cv2.equalizeHist()```) is used to normalize the image.
 
-I use numpy library to merge RGB channels to one and roll the axis to last.
-
-```
-gray = np.array([np.dot(img[..., :3], [0.299, 0.587, 0.114])])
-NewImg = np.rollaxis(gray, 0, 3) 
-```
-After that, the training data set is shuffled to avoid overfitting.
+And I notice the contribution of the sample classes is far from even. The minimum and maximum numbers of one label varies from less than 200 to more than 2000. A small training sample set will definitely cause underfit. Hence I create some new data through ```rotate_img``` if its class number is less than 400. As a result, I create 5130 new data to add into the training set.
 
 ### 2. My final model consists of the following layers:
 
 | Layer No. | Layer  		|     Description	        					| 
 |:-:|:----------------:|:----------------------------:| 
-|   | Input          		| 32x32x1 image 							| 
-| 1 | Convolution 5x5 	| 1x1 stride, valid padding, outputs 28x28x6 	|
+|   | Input          		| 28x28x1 image 							| 
+| 1 | Convolution 5x5 	| 1x1 stride, valid padding, outputs 24x24x8 	|
 |   | RELU			        		|					Activation							|
-|   | Max pooling	    	| 2x2 stride, outputs 14x14x6 				|
-| 2 | Convolution 3x3  | 1x1 stride, valid padding, outputs 12x12x20 |
+|   | Max pooling	    	| 2x2 stride, outputs 12x12x8 				|
+| 2 | Convolution 3x3  | 1x1 stride, valid padding, outputs 10x10x20 |
 |   | RELU		           |      Activation   									|
-|   | Max pooling			  	| 2x2 stride, outputs 6x6x20        				|
-| 3 | Convolution 3x3  | 1x1 stride, valid padding, outputs 4x4x60 |
+|   | Max pooling			  	| 2x2 stride, outputs 5x5x20        				|
+| 3 | Convolution 2x2  | 1x1 stride, valid padding, outputs 4x4x60 |
 |   | RELU		           |      Activation   									|
 |   | Max pooling			  	| 2x2 stride, outputs 2x2x60        									|
 |	  | Flatten			     		|	outputs 240											|
@@ -59,7 +53,7 @@ After that, the training data set is shuffled to avoid overfitting.
  
 ### 3. How to train my model. 
 
-To train the model, I used an optimizer, batch size = 128, epochs = 20, learning rate = 0.001.
+To train the model, I used an optimizer, batch size = 128, epochs = 30, learning rate = 0.001.
 ```
 optimizer = tf.train.AdamOptimizer(learning_rate = 0.001)
 training_operation = optimizer.minimize(loss_operation)
@@ -75,12 +69,12 @@ for offset in range(0, num_examples, BATCH_SIZE):
 ### 4. Model results
 
 My final model results were:
-* validation set accuracy of 94.8% 
-* test set accuracy of 93.6%
+* validation set accuracy of 96.2% 
+* test set accuracy of 94.1%
 
 An iterative approach was chosen:
 #### What was the first architecture that was tried and why was it chosen?
-I choose LeNet because they have the same application scenario - training the data set to learn how to classifer categories.
+I choose LeNet because they have the similar application scenario - training the data set to learn how to classifer categories.
 
 #### What were some problems with the initial architecture?
 LeNet architecture adoption is underfitting to this project.
@@ -101,23 +95,11 @@ The following figure is the summary comparison.
  
 Finnally I apply dropout and max pooling in my model.
 
-If a well known architecture was chosen:
-#### What architecture was chosen?
-  LeNet.
-
-#### Why did you believe it would be relevant to the traffic sign application?
-  Because they have the same application scenario - training the data set to learn how to classifer categories. And I grayscale the input image to transfer into the same problem.
-
-#### How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
-The final model is believed to work well after tuning, although it still has a lot of room to improve.
-* validation set accuracy of 94.8% 
-* test set accuracy of 93.6%
-
 
 ## Test a Model on New Images
 
 ### 1. Test the model with new images and analyze performance.
-Test images are isolated from training data and validation data to ensure REAL effectiveness of test accuracy. My test set accuracy is 93.6%.
+Test images are isolated from training data and validation data to ensure REAL effectiveness of test accuracy. My test set accuracy is 94.1%.
 
 ### 2. Choose German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 Some images might be difficult to classify because they are too dark and low contract, resulting hard for the model to extract the feature to classify correctly.
