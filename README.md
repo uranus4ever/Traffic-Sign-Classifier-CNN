@@ -112,3 +112,5 @@ Test images are isolated from training data and validation data to ensure REAL e
 ### 2. Choose German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 Some images might be difficult to classify because they are too dark and low contract, resulting hard for the model to extract the feature to classify correctly.
 
+## Reflection
+During tuning my project, I found that it consumes lots of time on finetuning (hyper)parameters. It will be boring to tune the model to fit a new classifier project every single time. Transfer learning will play magic to save repetitive efforts and get satisfactory achievements.
